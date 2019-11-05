@@ -32,47 +32,19 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(localStorage.getItem('userLogged')){
-      this.user = JSON.parse(localStorage.getItem('userLogged'));
-      this.selectStep();
-    }
     this.signInForm = this.formBuilder.group({
       Email: ['', Validators.required],
       Password: ['', Validators.required],
       Client_Id: ['']
     });
-    //console.log(this.signInForm.value.Client_Id);
-
-  }
-
-  selectStep(){
-    if(this.user.id && this.user.clientId && this.user.projectId && this.user.deviceId && this.user.deviceName && this.user.scannerMode && this.user.scannerRepeat && this.user.activitySettings && this.user.selectActivities){
-      this.goToSearch();
-      return;
-    }
-    else if(!this.user.projectId){
-      this.goToProjectSelection();
-      return;
-    }
-    else if(!this.user.deviceId && !this.user.deviceName){
-      this.goToDeviceName();
-      return;
-    }
-    else if(!this.user.scannerMode){
-      this.goToScannerMode();
-      return;
-    }
-    else if(!this.user.scannerRepeat){
-      this.goToRepeatScans();
-      return;
-    }
-    else if(!this.user.activitySettings){
-      this.goToActivitySettings();
-      return;
-    }
-    else if(!this.user.selectActivities){
-      this.goToSelectActivities();
-      return;
+    if(localStorage.getItem('userLogged')){
+      this.user = JSON.parse(localStorage.getItem('userLogged'));
+      if(this.user.id && this.user.clientId && !this.user.projectId){
+        this.goToProjectSelection();
+      }
+      else if(this.user.id && this.user.clientId && this.user.projectId){
+        this.goToSelectSetup();
+      }
     }
   }
 
@@ -82,36 +54,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  goToSearch() {
-    this.router.navigate(['pages/search']);
-  }
-
-  goToLogin(){
-    this.router.navigate(['']);
-  }
-
   goToProjectSelection(){
-    this.router.navigate(['/project']);
+    this.router.navigate(['/pages/project-selection']);
   }
 
-  goToDeviceName(){
-    this.router.navigate(['settings/device']);
-  }
-
-  goToScannerMode(){
-    this.router.navigate(['settings/scanner']);
-  }
-
-  goToRepeatScans(){
-    this.router.navigate(['settings/repeat']);
-  }
-
-  goToActivitySettings(){
-    this.router.navigate(['settings/activity']);
-  }
-
-  goToSelectActivities(){
-    this.router.navigate(['settings/select-activities']);
+  goToSelectSetup(){
+    this.router.navigate(['/pages/select']);
   }
 
   checkingInputEmail(){
@@ -161,6 +109,7 @@ export class LoginComponent implements OnInit {
               clientId: this.auxRes.client_id,
             }
             localStorage.setItem('userLogged', JSON.stringify(auxUser));
+            this.openSnackBar('Login successful!');
             this.goToProjectSelection();
           }
         },
@@ -191,6 +140,7 @@ export class LoginComponent implements OnInit {
               clientId: this.auxRes.client_id,
             }
             localStorage.setItem('userLogged', JSON.stringify(auxUser));
+            this.openSnackBar('Login successful!');
             this.goToProjectSelection();
           }
         },

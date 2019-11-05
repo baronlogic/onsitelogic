@@ -32,7 +32,7 @@ mat-form-field.mat-form-field {
     color: $shocklogic-dark;
 }
 
-.mat-snack-bar-container{ background-color: $shocklogic-dark; color: $shocklogic-orange; }
+.mat-snack-bar-container{ background-color: white; color: $shocklogic-dark; }
 
 .mat-simple-snackbar, .mat-button-wrapper{ font-family: $shocklogic-font; font-size: smaller; }
 
@@ -41,6 +41,7 @@ mat-toolbar{ background-color: white !important; font-family: $shocklogic-font !
 .header mat-toolbar{ box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2); margin-bottom: 2px !important; }
 
 .width-100{ width: 100%; }
+.width-75{ width: 75%; }
 
 .spacer { flex: 1 1 auto; }
 
@@ -52,12 +53,15 @@ ngx-bottom-nav{ background: #212121; }
 ngx-bottom-nav-button:not(.active) { --ngx-bottom-nav-button-color: whitesmoke; }
 
 .text-center{ text-align: center; }
+.text-left{ text-align: left; }
 
 .ml--15{ margin-left: -15px !important; }
 .mr--15{ margin-right: -15px !important; }
 .mx-20{ margin-left: 20px; margin-right: 20px;}
 .mt-20{ margin-top: 20px !important; }
+.mt-40{ margin-top: 40px !important; }
 .mb-20{ margin-bottom: 20px !important; }
+.mb-40{ margin-bottom: 40px !important; }
 
 :host ::ng-deep td.mat-cell { padding-left: 0px; }
 

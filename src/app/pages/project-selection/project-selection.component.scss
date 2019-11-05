@@ -1,0 +1,9 @@
+$shocklogic-blue: #5454C9;
+$shocklogic-font: 'Montserrat', sans-serif;
+.fs-14 { font-size: 14px; font-family: $shocklogic-font; font-weight: 600; }
+table { border-collapse: collapse; width: 100%; font-family: $shocklogic-font; font-size: 12px; border: 1px solid rgb(217, 217, 255); }
+th, td { text-align: left; padding: 8px; font-weight: 100; border-bottom: 1px solid rgb(217, 217, 255); }
+tr:nth-child(even){background-color: rgb(217, 217, 255) }
+th { border: 1px solid $shocklogic-blue; background-color: $shocklogic-blue; color: white; }
+tr:hover {background-color: rgb(173, 173, 255); cursor: pointer;}
+.display-contents{ display: contents; }
