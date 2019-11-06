@@ -13,6 +13,11 @@ export class ProjectSelectionComponent implements OnInit {
   user: any;
   projects: any;
 
+  //This handles the mat-progress-bar
+  bProjects = true;
+  //This handles the error response when loading projects
+  bError = false;
+
   constructor(
     private router: Router,
     public snackBar: MatSnackBar,
@@ -37,6 +42,11 @@ export class ProjectSelectionComponent implements OnInit {
     });
   }
 
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['']);
+  }
+
   goToLogin(){
     this.router.navigate(['/auth']);
   }
@@ -49,11 +59,15 @@ export class ProjectSelectionComponent implements OnInit {
     this.projectsService.getAllProjectRecords(clientId)
     .subscribe(
       res => {
+        
         this.projects = res;
         console.log(this.projects);
+        this.bProjects = false;
       },
       err => {
         console.log(err);
+        this.bError = true;
+        this.bProjects = false;
         this.openSnackBar(err.message);
       }
     );
@@ -63,6 +77,12 @@ export class ProjectSelectionComponent implements OnInit {
     this.user.projectId = project;
     localStorage.setItem('userLogged', JSON.stringify(this.user));
     this.goToSelectSetup();
+  }
+
+  loadProjects(){
+    this.bProjects = true;
+    this.bError = false;
+    this.getProjects(this.user.clientId);
   }
 
 }
